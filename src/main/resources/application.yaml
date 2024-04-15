@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: simple-pdv-api
+  datasource:
+    url:  jdbc:h2:mem:simple-pdv
+    username: admin
+    password: 123456
