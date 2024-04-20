@@ -41,8 +41,8 @@ public class ProductController {
     return ResponseEntity.ok(productJsonResponse);
 
   }
-  @PostMapping("/new")
-  public ResponseEntity<?> addNewProduct(@RequestBody ProductRequest request) {
+  @PostMapping("/create")
+  public ResponseEntity<?> createProduct(@RequestBody ProductRequest request) {
     var validationResponse = productValidator.isNewProductValid(request);
 
     if(!validationResponse.isValid()) {

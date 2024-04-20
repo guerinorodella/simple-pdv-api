@@ -86,7 +86,7 @@ class ProductControllerTest {
   }
 
   @Test
-  void newProduct() {
+  void createProduct() {
     MockHttpServletRequest request = new MockHttpServletRequest();
     RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
 
@@ -101,7 +101,7 @@ class ProductControllerTest {
             .build();
     Mockito.when(repository.save(ArgumentMatchers.any(ProductModel.class))).thenReturn(newProduct);
 
-    var response = instance.addNewProduct(productRequest);
+    var response = instance.createProduct(productRequest);
 
     assertEquals(HttpStatus.CREATED, response.getStatusCode());
     assertNotNull(response.getHeaders().get("Location"));
