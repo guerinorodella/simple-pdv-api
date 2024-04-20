@@ -1,0 +1,15 @@
+version: '3.8'
+services:
+    postgresql:
+        image: postgres:15.3-alpine3.18
+        container_name: 'postgresql-simple-pdv'
+        environment:
+            POSTGRES_USER: postgres
+            POSTGRES_PASSWORD: admin123456
+        ports:
+            - 5432:5432
+        networks:
+            - backend_services
+networks:
+    backend_services:
+        driver: bridge

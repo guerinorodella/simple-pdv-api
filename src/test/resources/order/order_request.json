@@ -1,0 +1,10 @@
+{
+  "order_number": "001",
+  "products": [
+    {
+      "product_id": 1,
+      "quantity": 2
+    }
+  ],
+  "requested_by": "Attender 01"
+}

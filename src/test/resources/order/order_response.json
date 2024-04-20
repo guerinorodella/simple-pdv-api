@@ -1,0 +1,19 @@
+{
+  "products": [
+    {
+      "category": "Drinks",
+      "description": "Coffee",
+      "price": 4.5,
+      "id": 1
+    },
+    {
+      "category": "Drinks",
+      "description": "Mocha Coffee",
+      "price": 5.5,
+      "id": 2
+    }
+  ],
+  "id": 42,
+  "order_number": "ORD_001",
+  "requested_by": "An Attender"
+}
