@@ -38,4 +38,21 @@ public class OrderModel {
 
   @Column(name = "requested_by")
   private String requestedBy;
+
+  private String status;
+
+  public void markAsCreated() {
+    setStatus(OrderStatus.CREATED.name());
+  }
+  public void markAsClosed() {
+    setStatus(OrderStatus.CLOSED.name());
+  }
+  public void markAsDeleted() {
+    setStatus(OrderStatus.DELETED.name());
+  }
+  enum OrderStatus {
+    CREATED,
+    CLOSED,
+    DELETED
+  }
 }

@@ -91,4 +91,17 @@ public class OrderController {
                     .toUri())
             .body(response);
   }
+
+  @DeleteMapping("{id}")
+  public ResponseEntity<?> deleteOrder(@PathVariable Long id) {
+    var orderResponse = repository.findById(id);
+    if(orderResponse.isEmpty()) {
+      throw new IllegalArgumentException();
+    }
+
+    var order = orderResponse.get();
+    order.markAsDeleted();
+    repository.save(order);
+    return ResponseEntity.noContent().build();
+  }
 }

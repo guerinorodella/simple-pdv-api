@@ -18,13 +18,16 @@ import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
+import javax.naming.ldap.SortControl;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Date;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 class OrderControllerTest {
 
@@ -133,5 +136,29 @@ class OrderControllerTest {
     assertEquals(HttpStatus.CREATED.value(), response.getStatusCode().value());
     assertEquals("http://localhost/simple-pdv/v1/order/42", response.getHeaders().get("Location").get(0));
 
+  }
+
+  @Test
+  void deleteOrder() {
+    Optional<OrderModel> orderRecord = Optional.of(OrderModel.builder()
+            .id(42L)
+            .requestedBy("An Attender")
+            .createdOn(new Date())
+            .orderNumber("ORD_001")
+            .products(Collections.singletonList(ProductModel.builder()
+                            .id(1L)
+                            .active(true)
+                            .createdOn(new Date())
+                            .price(BigDecimal.valueOf(4.5))
+                            .category("Drinks")
+                            .description("Coffee")
+                            .build()))
+            .build());
+    Mockito.when(orderRepository.findById(42L)).thenReturn(orderRecord);
+
+    var response = instance.deleteOrder(42L);
+    assertNotNull(response);
+    assertEquals(HttpStatus.NO_CONTENT.value(), response.getStatusCode().value());
+    assertEquals("DELETED", orderRecord.get().getStatus());
   }
 }
