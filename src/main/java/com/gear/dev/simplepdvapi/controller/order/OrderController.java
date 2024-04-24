@@ -71,6 +71,7 @@ public class OrderController {
       }
 
     }
+    order.markAsCreated();
     order = repository.save(order);
     List<OrderRequestProductResponse> orderProductResponseList = order.getProducts()
             .stream()
