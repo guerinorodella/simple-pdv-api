@@ -1,9 +1,13 @@
 version: '3.8'
 services:
-    postgresql:
+    postgresql-db:
         image: postgres:15.3-alpine3.18
         container_name: 'postgresql-simple-pdv'
+        volumes:
+            - ./database_data:/var/lib/postgresql/data
+            - ./docker/init.sql:/docker-entrypoint-initdb.d/init.sql
         environment:
+            POSTGRES_DB: simple-pdv
             POSTGRES_USER: postgres
             POSTGRES_PASSWORD: admin123456
         ports:
