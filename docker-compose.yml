@@ -14,6 +14,14 @@ services:
             - 5432:5432
         networks:
             - backend_services
+    app:
+        container_name: simple-pdv-api
+        build:
+            context: .
+        networks:
+            - backend_services
+        ports:
+            - 8080:8080
 networks:
     backend_services:
         driver: bridge
